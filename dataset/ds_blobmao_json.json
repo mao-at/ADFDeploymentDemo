@@ -11,7 +11,8 @@
 				"defaultValue": "playground"
 			},
 			"folderName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": " "
 			},
 			"fileName": {
 				"type": "string",
