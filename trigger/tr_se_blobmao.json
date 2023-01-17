@@ -1,0 +1,18 @@
+{
+	"name": "tr_se_blobmao",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/playground/blobs/movie",
+			"blobPathEndsWith": ".json",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/0cc52c42-7b09-4434-b535-140b63bb4289/resourceGroups/sunRG/providers/Microsoft.Storage/storageAccounts/blobmao",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
