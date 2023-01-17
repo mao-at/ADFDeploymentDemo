@@ -20,7 +20,14 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "movie_*",
+							"wildcardFolderPath": {
+								"value": "@pipeline().parameters.sourceFolderName",
+								"type": "Expression"
+							},
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.sourceFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -43,7 +50,10 @@
 						"referenceName": "ds_blobmao_json",
 						"type": "DatasetReference",
 						"parameters": {
-							"containerName": "playground",
+							"containerName": {
+								"value": "@pipeline().parameters.sourceContainerName",
+								"type": "Expression"
+							},
 							"folderName": " ",
 							"fileName": "movie_1.json"
 						}
@@ -52,11 +62,45 @@
 				"outputs": [
 					{
 						"referenceName": "ds_adlsgen2mao_json",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"fileSystemName": {
+								"value": "@pipeline().parameters.sinkContainerName",
+								"type": "Expression"
+							},
+							"folderName": {
+								"value": "@pipeline().parameters.sinkFolderName",
+								"type": "Expression"
+							},
+							"fileName": {
+								"value": "@pipeline().parameters.sinkFileName",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"sourceContainerName": {
+				"type": "string"
+			},
+			"sourceFolderName": {
+				"type": "string"
+			},
+			"sourceFileName": {
+				"type": "string"
+			},
+			"sinkContainerName": {
+				"type": "string"
+			},
+			"sinkFolderName": {
+				"type": "string"
+			},
+			"sinkFileName": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
