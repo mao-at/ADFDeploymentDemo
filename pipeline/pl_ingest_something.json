@@ -99,6 +99,9 @@
 			},
 			"sinkFileName": {
 				"type": "string"
+			},
+			"triggerFileName": {
+				"type": "string"
 			}
 		},
 		"annotations": []

@@ -12,8 +12,10 @@
 				"parameters": {
 					"sourceContainerName": "playground",
 					"sourceFolderName": " ",
+					"sourceFileName": "@TriggerBody().fileName",
 					"sinkContainerName": "playground",
-					"sinkFolderName": "ADFDeploymentDemo"
+					"sinkFolderName": "ADFDeploymentDemo",
+					"triggerFileName": "@TriggerBody().fileName"
 				}
 			}
 		],
