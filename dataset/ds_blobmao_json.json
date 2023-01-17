@@ -6,14 +6,14 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"SourceContainerName": {
+			"containerName": {
 				"type": "string",
 				"defaultValue": "playground"
 			},
-			"sourceFolderName": {
+			"folderName": {
 				"type": "string"
 			},
-			"sourceFileName": {
+			"fileName": {
 				"type": "string",
 				"defaultValue": "movie_1.json"
 			}
@@ -24,15 +24,15 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
-					"value": "@dataset().sourceFileName",
+					"value": "@dataset().fileName",
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@dataset().sourceFolderName",
+					"value": "@dataset().folderName",
 					"type": "Expression"
 				},
 				"container": {
-					"value": "@dataset().SourceContainerName",
+					"value": "@dataset().containerName",
 					"type": "Expression"
 				}
 			}
