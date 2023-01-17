@@ -1,0 +1,122 @@
+{
+	"name": "ds_blobmao_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blobmao",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SourceContainerName": {
+				"type": "string",
+				"defaultValue": "playground"
+			},
+			"sourceFolderName": {
+				"type": "string"
+			},
+			"sourceFileName": {
+				"type": "string",
+				"defaultValue": "movie_1.json"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().sourceFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().sourceFolderName",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().SourceContainerName",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"movie": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Id": {
+								"type": "integer"
+							},
+							"Title": {
+								"type": "string"
+							},
+							"Overview": {
+								"type": "string"
+							},
+							"Tagline": {
+								"type": "string"
+							},
+							"Budget": {
+								"type": "number"
+							},
+							"Revenue": {
+								"type": "number"
+							},
+							"ImdbUrl": {
+								"type": "string"
+							},
+							"TmdbUrl": {
+								"type": "string"
+							},
+							"PosterUrl": {
+								"type": "string"
+							},
+							"BackdropUrl": {
+								"type": "string"
+							},
+							"OriginalLanguage": {
+								"type": "string"
+							},
+							"ReleaseDate": {
+								"type": "string"
+							},
+							"RunTime": {
+								"type": "integer"
+							},
+							"Price": {
+								"type": "number"
+							},
+							"CreatedDate": {
+								"type": "string"
+							},
+							"UpdatedDate": {
+								"type": "null"
+							},
+							"UpdatedBy": {
+								"type": "null"
+							},
+							"CreatedBy": {
+								"type": "null"
+							},
+							"genres": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "integer"
+										},
+										"name": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
