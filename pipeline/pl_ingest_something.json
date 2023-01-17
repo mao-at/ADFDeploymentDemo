@@ -1,0 +1,109 @@
+{
+	"name": "pl_ingest_something",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": {
+								"value": "@pipeline().parameters.sourceFolderName",
+								"type": "Expression"
+							},
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.sourceFileName",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_blobmao_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": {
+								"value": "@pipeline().parameters.sourceContainerName",
+								"type": "Expression"
+							},
+							"folderName": " ",
+							"fileName": "movie_1.json"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_adlsgen2mao_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"fileSystemName": {
+								"value": "@pipeline().parameters.sinkContainerName",
+								"type": "Expression"
+							},
+							"folderName": {
+								"value": "@pipeline().parameters.sinkFolderName",
+								"type": "Expression"
+							},
+							"fileName": {
+								"value": "@pipeline().parameters.sinkFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"sourceContainerName": {
+				"type": "string"
+			},
+			"sourceFolderName": {
+				"type": "string"
+			},
+			"sourceFileName": {
+				"type": "string"
+			},
+			"sinkContainerName": {
+				"type": "string"
+			},
+			"sinkFolderName": {
+				"type": "string"
+			},
+			"sinkFileName": {
+				"type": "string"
+			},
+			"triggerFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}
