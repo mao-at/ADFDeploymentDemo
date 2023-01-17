@@ -15,8 +15,46 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "movie_*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_blobmao_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": "playground",
+							"folderName": " ",
+							"fileName": "movie_1.json"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_adlsgen2mao_json",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
