@@ -1,0 +1,112 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-assignments"
+		},
+		"adlsgen2mao_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'adlsgen2mao'"
+		},
+		"blobmao_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'blobmao'"
+		},
+		"adlsgen2mao_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsgen2mao.dfs.core.windows.net/"
+		},
+		"tr_se_blobmao_properties_pl_ingest_something_parameters_sourceContainerName": {
+			"type": "string",
+			"defaultValue": "playground"
+		},
+		"tr_se_blobmao_properties_pl_ingest_something_parameters_sourceFolderName": {
+			"type": "string",
+			"defaultValue": " "
+		},
+		"tr_se_blobmao_properties_pl_ingest_something_parameters_sourceFileName": {
+			"type": "string",
+			"defaultValue": "@TriggerBody().fileName"
+		},
+		"tr_se_blobmao_properties_pl_ingest_something_parameters_sinkContainerName": {
+			"type": "string",
+			"defaultValue": "playground"
+		},
+		"tr_se_blobmao_properties_pl_ingest_something_parameters_sinkFolderName": {
+			"type": "string",
+			"defaultValue": "ADFDeploymentDemo"
+		},
+		"tr_se_blobmao_properties_pl_ingest_something_parameters_triggerFileName": {
+			"type": "string",
+			"defaultValue": "@TriggerBody().fileName"
+		},
+		"tr_se_blobmao_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/0cc52c42-7b09-4434-b535-140b63bb4289/resourceGroups/sunRG/providers/Microsoft.Storage/storageAccounts/blobmao"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-assignments_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"adlsgen2mao_accountKey": {
+						"value": "[parameters('adlsgen2mao_accountKey')]"
+					},
+					"blobmao_connectionString": {
+						"value": "[parameters('blobmao_connectionString')]"
+					},
+					"adlsgen2mao_properties_typeProperties_url": {
+						"value": "[parameters('adlsgen2mao_properties_typeProperties_url')]"
+					},
+					"tr_se_blobmao_properties_pl_ingest_something_parameters_sourceContainerName": {
+						"value": "[parameters('tr_se_blobmao_properties_pl_ingest_something_parameters_sourceContainerName')]"
+					},
+					"tr_se_blobmao_properties_pl_ingest_something_parameters_sourceFolderName": {
+						"value": "[parameters('tr_se_blobmao_properties_pl_ingest_something_parameters_sourceFolderName')]"
+					},
+					"tr_se_blobmao_properties_pl_ingest_something_parameters_sourceFileName": {
+						"value": "[parameters('tr_se_blobmao_properties_pl_ingest_something_parameters_sourceFileName')]"
+					},
+					"tr_se_blobmao_properties_pl_ingest_something_parameters_sinkContainerName": {
+						"value": "[parameters('tr_se_blobmao_properties_pl_ingest_something_parameters_sinkContainerName')]"
+					},
+					"tr_se_blobmao_properties_pl_ingest_something_parameters_sinkFolderName": {
+						"value": "[parameters('tr_se_blobmao_properties_pl_ingest_something_parameters_sinkFolderName')]"
+					},
+					"tr_se_blobmao_properties_pl_ingest_something_parameters_triggerFileName": {
+						"value": "[parameters('tr_se_blobmao_properties_pl_ingest_something_parameters_triggerFileName')]"
+					},
+					"tr_se_blobmao_properties_typeProperties_scope": {
+						"value": "[parameters('tr_se_blobmao_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

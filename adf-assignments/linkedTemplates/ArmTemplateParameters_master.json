@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-assignments"
+		},
+		"adlsgen2mao_accountKey": {
+			"value": ""
+		},
+		"blobmao_connectionString": {
+			"value": ""
+		},
+		"adlsgen2mao_properties_typeProperties_url": {
+			"value": "https://adlsgen2mao.dfs.core.windows.net/"
+		},
+		"tr_se_blobmao_properties_pl_ingest_something_parameters_sourceContainerName": {
+			"value": "playground"
+		},
+		"tr_se_blobmao_properties_pl_ingest_something_parameters_sourceFolderName": {
+			"value": " "
+		},
+		"tr_se_blobmao_properties_pl_ingest_something_parameters_sourceFileName": {
+			"value": "@TriggerBody().fileName"
+		},
+		"tr_se_blobmao_properties_pl_ingest_something_parameters_sinkContainerName": {
+			"value": "playground"
+		},
+		"tr_se_blobmao_properties_pl_ingest_something_parameters_sinkFolderName": {
+			"value": "ADFDeploymentDemo"
+		},
+		"tr_se_blobmao_properties_pl_ingest_something_parameters_triggerFileName": {
+			"value": "@TriggerBody().fileName"
+		},
+		"tr_se_blobmao_properties_typeProperties_scope": {
+			"value": "/subscriptions/0cc52c42-7b09-4434-b535-140b63bb4289/resourceGroups/sunRG/providers/Microsoft.Storage/storageAccounts/blobmao"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
